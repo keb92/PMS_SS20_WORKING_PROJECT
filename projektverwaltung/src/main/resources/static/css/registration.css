@@ -1,0 +1,11 @@
+.validation-message {
+    font-style: normal;
+    font-size: 12px;
+    color: #FF1C19;
+}
+
+.thd {
+    !important color: #fff;
+    !important background-color: #2c864c;
+    !important border-color: #57ef5c;
+}
