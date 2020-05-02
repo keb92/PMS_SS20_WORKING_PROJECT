@@ -29,7 +29,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Projektübersicht</a>
                             <a th:href="@{/admin/createProject}" method="get" class="dropdown-item" href="#">Projekt anlegen</a>
-                            <a th:href="@{/admin/createTask}" method="get" class="dropdown-item" href="#">Aufgabe anlegen</a>
+                            <a class="dropdown-item" href="#">Aufgabe anlegen</a>
                         </div>
                     </div>
                 </li>
@@ -59,33 +59,27 @@
     </div>
 </nav>
 
-
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/admin/createProject}"
-                  th:object="${projekt}" method="post" class="form-horizontal"
+            <form autocomplete="off" action="#" th:action="@{/admin/createTask}"
+                  th:object="${aufgabe}" method="post" class="form-horizontal"
                   role="form">
-                <h2>Projekt Anlegen</h2>
+                <h2>Aufgabe Anlegen</h2>
+
                 <div class="form-group">
                     <div class="col-sm-9">
 
-                        <input type="text" th:field="*{bezeichnung}" placeholder="Bezeichnung"
-                               class="form-control"/>
+                        <input type="text" th:field="*{aufgabe}"
+                               placeholder="Bezeichnung" class="form-control"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
 
-                        <input type="text" th:field="*{budget}"
+                        <input type="text" th:field="*{aufwand}"
                                placeholder="Budget" class="form-control"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{scope}" placeholder="Scope"
-                               class="form-control"/>
                     </div>
                 </div>
 

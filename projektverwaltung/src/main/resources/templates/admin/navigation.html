@@ -2,12 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-
-<head th:include="admin/header::head"></head>
-
-<body>
-
-<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
         <a class="navbar-brand" href="#"><span th:utext="${userName}"></span></a>
@@ -17,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Projekt anlegen
+                    <a class="nav-link" href="#">Übersicht
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -28,8 +22,8 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Projektübersicht</a>
-                            <a th:href="@{/admin/createProject}" method="get" class="dropdown-item" href="#">Projekt anlegen</a>
-                            <a th:href="@{/admin/createTask}" method="get" class="dropdown-item" href="#">Aufgabe anlegen</a>
+                            <a th:href="@{/admin/createProject}" method = "get" class="dropdown-item" href="#">Projekt anlegen</a>
+                            <a class="dropdown-item" href="#">Aufgabe anlegen</a>
                         </div>
                     </div>
                 </li>
@@ -58,56 +52,5 @@
         </div>
     </div>
 </nav>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/admin/createProject}"
-                  th:object="${projekt}" method="post" class="form-horizontal"
-                  role="form">
-                <h2>Projekt Anlegen</h2>
-                <div class="form-group">
-                    <div class="col-sm-9">
-
-                        <input type="text" th:field="*{bezeichnung}" placeholder="Bezeichnung"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-
-                        <input type="text" th:field="*{budget}"
-                               placeholder="Budget" class="form-control"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{scope}" placeholder="Scope"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Anlegen</button>
-                    </div>
-                </div>
-
-                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
-
-
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.slim.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
 
 </html>
