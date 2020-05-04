@@ -20,6 +20,7 @@ public class ProjektService {
         projekt.setBudget(projekt.getBudget());
         projekt.setScope(projekt.getScope());
 
+
         return projektrepository.save(projekt);
     }
 

@@ -22,28 +22,27 @@ public class Aufgabe {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "a_id")
-    private Integer aid;
-
-    @Column(name = "aufgabe")
-    private String aufgabe;
+    private int a_id;
+    @Column(name = "beschreibung")
+    private String beschreibung;
     @Column(name = "aufwand")
-    private Integer aufwand;
+    private int aufwand;
 
 
     public Integer getAid() {
-        return aid;
+        return a_id;
     }
 
-    public void setAid(Integer aid) {
-        this.aid = aid;
+    public void setAid(Integer a_id) {
+        this.a_id = a_id;
     }
 
-    public String getAufgabe() {
-        return aufgabe;
+    public String getBeschreibung() {
+        return beschreibung;
     }
 
-    public void setAufgabe(String aufgabe) {
-        this.aufgabe = aufgabe;
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
     }
 
     public Integer getAufwand() {

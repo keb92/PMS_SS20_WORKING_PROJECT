@@ -32,7 +32,7 @@ public class AdminController {
     }
 
     @PostMapping(value = {"/admin/createProject"})
-    public ModelAndView create(@Valid Projekt projekt,  BindingResult bindingResult) {
+    public ModelAndView saveit(@Valid Projekt projekt,  BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         projektservice.saveProjekt(projekt);
         modelAndView.addObject("successMessage", "Projekt erfolgreich anglegt.");
