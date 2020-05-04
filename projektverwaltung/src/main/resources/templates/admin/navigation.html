@@ -41,6 +41,18 @@
                         </div>
                     </div>
                 </li>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Kunden
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Kundenübersicht</a>
+                            <a th:href="@{/admin/createCustomer}" method="get"class="dropdown-item" href="#">Kunden anlegen</a>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <form th:action="@{/logout}" method="get">
                         <button class="btn btn-md btn-danger btn-block" name="registration"

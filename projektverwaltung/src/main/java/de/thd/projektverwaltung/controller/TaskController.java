@@ -33,7 +33,7 @@ public class TaskController {
     public ModelAndView saveTask(@Valid Aufgabe aufgabe, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();
         aufgabenService.saveAufgabe(aufgabe);
-        modelAndView.addObject("sucessMessage","Aufgabe erfolgreich angelegt!");
+        modelAndView.addObject("successMessage","Aufgabe erfolgreich angelegt!");
         modelAndView.addObject("aufgabe", new Aufgabe());
         modelAndView.setViewName("/admin/createTask");
         return modelAndView;
