@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -25,8 +26,9 @@ public class Projekt {
     private String scope;
     @Column(name = "Projektleiter")
     private String projektleiter;
-
-
+    @ManyToOne(targetEntity = Customer.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="cp_fk", referencedColumnName = "c_id")
+    private List<Customer> customer;
 
 
 
@@ -60,7 +62,14 @@ public class Projekt {
 
     public void setScope (String scope) { this.scope = scope; }
 
-    
+    public List<Customer> getCustomers() {
+        return customer;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customer = customer;
+    }
+
 
     /*public String getProjektleiter() {
         return projektleiter;

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import java.util.List;
 import javax.persistence.*;
 
 @Data
@@ -22,6 +22,9 @@ public class Customer {
     private int c_id;
     @Column(name = "kundenname")
     private String kundenname;
+
+
+
 
 
     public int getC_id() {

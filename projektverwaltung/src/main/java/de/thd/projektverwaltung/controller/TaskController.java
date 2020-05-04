@@ -38,7 +38,6 @@ public class TaskController {
         modelAndView.setViewName("/admin/createTask");
         return modelAndView;
 
-
     }
 
 }
