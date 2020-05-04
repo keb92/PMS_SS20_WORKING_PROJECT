@@ -1,11 +1,13 @@
 package de.thd.projektverwaltung.controller;
 
 import de.thd.projektverwaltung.model.User;
+import de.thd.projektverwaltung.repository.UserRepository;
 import de.thd.projektverwaltung.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -63,16 +66,21 @@ public class LoginController {
     }
 
 
+
+
     @GetMapping(value="/admin/home")
     public ModelAndView admin(){
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
+        List<User> list = userService.getAllUsers();
         modelAndView.addObject("userName", "Hallo " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
+        modelAndView.addObject("users",list);
         modelAndView.addObject("adminMessage","Teamleiterbereich!!");
         modelAndView.setViewName("/admin/home");
         return modelAndView;
     }
+
 
     @GetMapping(value="/mitarbeiter/home")
     public ModelAndView mitarbeiter(){
