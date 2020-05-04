@@ -1,8 +1,12 @@
 package de.thd.projektverwaltung.service;
 import de.thd.projektverwaltung.model.Projekt;
+import de.thd.projektverwaltung.model.Customer;
 import de.thd.projektverwaltung.repository.ProjektRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Array;
+import java.util.HashSet;
 
 @Service
 public class ProjektService {
@@ -16,10 +20,12 @@ public class ProjektService {
 
     public Projekt saveProjekt(Projekt projekt) {
 
+        /*
         projekt.setBezeichnung(projekt.getBezeichnung());
         projekt.setBudget(projekt.getBudget());
         projekt.setScope(projekt.getScope());
-
+        projekt.setCustomers();
+        */
         return projektrepository.save(projekt);
     }
 
