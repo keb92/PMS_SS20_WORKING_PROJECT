@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -24,6 +25,9 @@ public class Projekt {
     private String scope;
     @Column(name = "Projektleiter")
     private String projektleiter;
+
+
+
 
 
     public Integer getpid() {
@@ -55,6 +59,8 @@ public class Projekt {
     }
 
     public void setScope (String scope) { this.scope = scope; }
+
+    
 
     /*public String getProjektleiter() {
         return projektleiter;

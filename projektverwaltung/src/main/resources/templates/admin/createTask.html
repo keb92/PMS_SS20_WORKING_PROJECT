@@ -7,57 +7,7 @@
 
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="#"><span th:utext="${userName}"></span></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Projekt anlegen
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Projekte
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Projektübersicht</a>
-                            <a th:href="@{/admin/createProject}" method="get" class="dropdown-item" href="#">Projekt anlegen</a>
-                            <a class="dropdown-item" href="#">Aufgabe anlegen</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-
-                </li>
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Mitarbeiter
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Mitarbeiterübersicht</a>
-                            <a class="dropdown-item" href="#">Projekt einem Mitarbeiter zuweisen</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <form th:action="@{/logout}" method="get">
-                        <button class="btn btn-md btn-danger btn-block" name="registration"
-                                type="Submit">Logout
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<nav th:replace="admin/navigation::navigation"></nav>
 
 <div class="container">
     <div class="row">
@@ -98,7 +48,7 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript -->
+<!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.slim.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

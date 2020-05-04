@@ -52,6 +52,8 @@ public class User {
 
 
 
+
+
     public Integer getId() {
         return id;
     }
@@ -115,4 +117,5 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 }
