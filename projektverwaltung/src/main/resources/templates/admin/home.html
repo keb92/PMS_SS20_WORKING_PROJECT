@@ -10,12 +10,14 @@
 
 <!-- Page Content -->
 <div class="container">
-    <h3>Ihre Mitarbeiterübersicht</h3>
+
+
     <div th:switch="${users}" class="container my-5">
         <div class="col-md-10">
+            <h3>Mitarbeiterübersicht</h3>
             <h2 th:case="null">Keine Mitarbeiter gefunden !!</h2>
             <div th:case="*">
-                <table class="table table-striped table-dark">
+                <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>Vorname</th>
