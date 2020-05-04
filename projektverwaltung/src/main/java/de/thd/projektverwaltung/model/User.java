@@ -51,9 +51,6 @@ public class User {
     private Set<Role> roles;
 
 
-
-
-
     public Integer getId() {
         return id;
     }

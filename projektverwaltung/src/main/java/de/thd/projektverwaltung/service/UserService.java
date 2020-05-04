@@ -4,12 +4,15 @@ import de.thd.projektverwaltung.model.Role;
 import de.thd.projektverwaltung.model.User;
 import de.thd.projektverwaltung.repository.RoleRepository;
 import de.thd.projektverwaltung.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -42,5 +45,20 @@ public class UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
+
+    @Autowired
+    private UserRepository repo;
+
+    public List<User> getAllUsers()
+    {
+        List<User> result = (List<User>) repo.findAll();
+
+        if(result.size() > 0) {
+            return result;
+        } else {
+            return new ArrayList<User>();
+        }
+    }
+
 
 }
