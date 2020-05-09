@@ -1,6 +1,7 @@
 package de.thd.projektverwaltung.service;
 import de.thd.projektverwaltung.model.Projekt;
 import de.thd.projektverwaltung.model.Customer;
+import de.thd.projektverwaltung.model.User;
 import de.thd.projektverwaltung.repository.ProjektRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,9 @@ public class ProjektService {
         projekt.setCustomers();
         */
         return projektrepository.save(projekt);
+    }
+    public Projekt findByPid(int pid) {
+        return projektrepository.findByPid(pid);
     }
 
 }
