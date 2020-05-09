@@ -55,11 +55,10 @@
             <div class="form-group">
                 <div class="col-sm-9">
                 <label for="sel1">Projekt:</label>
-                <select class="form-control" th:fields="${projekte}" id="sel1">
-                    <option value="0">Auswählen</option>
-                    <option th:each="projekte: ${projekte}" th:value="${projekte}" th:text="${projekte}"></option>
+                <select class="form-control" th:fields="${projects}" id="sel1">
+                    <option th:each="projekte: ${projects}" th:value="${projekte}" th:text="${projekte.bezeichnung}"></option>
                 </select>
-                </div>
+                </div>f
             </div>
             <br>
             <div class="form-group">
@@ -74,6 +73,7 @@
                 <div class="col-sm-9">
                     <button type="submit" class="btn btn-dark btn-block">Erfassen</button>
                 </div>
+
             </div>
         </div>
     </div>

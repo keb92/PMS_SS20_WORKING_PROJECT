@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
 
+import java.util.List;
+
 @Controller
 public class EmployeeController {
     @Autowired
@@ -23,9 +25,9 @@ public class EmployeeController {
     @GetMapping(value = {"/mitarbeiter/recordTime"})
     public ModelAndView saveit(@Valid Projekt projekt,  BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        Projekt projekt1 = projektService.findByPid(1);
+        List<Projekt> list = projektService.getAllProjekt();
+        modelAndView.addObject("projects",list);
         modelAndView.addObject("successMessage", "Zeit erfolgreich erfasst");
-        modelAndView.addObject("projekte", projekt1.getBezeichnung());
         modelAndView.setViewName("/mitarbeiter/recordTime");
         return modelAndView;
     }
