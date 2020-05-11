@@ -6,36 +6,38 @@
     <title>Mitarbeiter-Login</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-<form th:action="@{/registration}" method="get">
-    <button class="btn btn-md btn-success btn-block" type="Submit">Melde mich an!</button>
-</form>
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <div class="container">
-    <div class="flex-container">
-       <div class="flex-item">
-           <img th:src="@{/images/login.png}" class="img-responsive center-block" width="200" height="200" alt="Logo"/>
-           <form th:action="@{/login}" method="POST" class="form-signin">
-               <h3 class="form-signin-heading" th:text="Anmelden"></h3>
-               <br/>
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="https://i.ibb.co/5FZhN4k/thd-pms-kb.png" />
+        <form class="form-signin" th:action="@{/login}" method="POST">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="text" id="user_name" name="user_name" class="form-control" placeholder="mitarbeiter-id" required autofocus>
+            <input type="password" th:placeholder="password" id="password" name="password"  class="form-control"required>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+        </form>
+        <a href="#" class="forgot-password">
+            <form th:action="@{/registration}" method="get">
+                <button class="btn btn-md btn-success btn-block" type="Submit">Melde mich an!</button>
+            </form>
+        </a>
+        <div class="alert alert-block"  th:if="${param.error}">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4>Fehler</h4>
+            Mitarbeiter-ID oder Passwort falsch.
+        </div>
 
-               <input type="text" id="user_name" name="user_name" placeholder="Mitarbeiter-ID"
-                      class="form-control"/> <br/>
-               <input type="password" th:placeholder="password"
-                      id="password" name="password" class="form-control"/> <br/>
-
-               <div align="center" th:if="${param.error}">
-                   <p style="font-size: 20; color: #FF1C19;">Mitarbeiter-ID oder Passwort falsch</p>
-               </div>
-               <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
-                       th:text="Login"></button>
-           </form>
-       </div>
     </div>
+</div>
 
 </div>
 </body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="admin/header::head"></head>
+
+<body>
+
+<nav th:replace="admin/navigation::navigation"></nav>
+
+<!-- Page Content -->
+<div class="container">
+
+
+    <div th:switch="${projects}" class="container my-5">
+        <div class="col-md-10">
+            <h3>Mitarbeiterübersicht</h3>
+            <h2 th:case="null">Keine Mitarbeiter gefunden !!</h2>
+            <div th:case="*">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                        <th>Email</th>
+                        <th>Position</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="project : ${projects}">
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.jobtitle}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.slim.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
