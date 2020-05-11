@@ -46,6 +46,8 @@ public class User {
     @Column(name = "jobtitle")
     @NotEmpty(message = "*Bitte Stelle angeben!!")
     private String jobtitle;
+    @Column(name = "zeitkonto")
+    private int zeitkonto;
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
@@ -115,4 +117,11 @@ public class User {
         this.roles = roles;
     }
 
-}
+    public void setZeitkonto(int zeitkonto){this.zeitkonto=zeitkonto;}
+
+    public int getZeitkonto(){return zeitkonto;}
+
+    }
+
+
+

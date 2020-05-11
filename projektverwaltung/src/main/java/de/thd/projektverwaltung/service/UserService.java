@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -37,10 +34,14 @@ public class UserService {
     public User findUserByUserName(String userName) {
         return userRepository.findByUserName(userName);
     }
+    
 
     public User saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(true);
+        Calendar cal = Calendar.getInstance();
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+        user.setZeitkonto((cal.getActualMaximum(Calendar.DAY_OF_MONTH)-dayOfMonth)*(160/(cal.getActualMaximum(Calendar.DAY_OF_MONTH))));
         Role userRole = roleRepository.findByRole("MEMBER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
@@ -59,6 +60,7 @@ public class UserService {
             return new ArrayList<User>();
         }
     }
+
 
 
 }

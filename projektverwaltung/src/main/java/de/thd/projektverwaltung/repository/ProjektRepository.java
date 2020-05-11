@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjektRepository extends JpaRepository<Projekt, Long> {
+    Projekt findByPid(int pid);
+
 
 }

@@ -89,6 +89,7 @@ public class LoginController {
         User user = userService.findUserByUserName(auth.getName());
         modelAndView.addObject("userName", "Hallo " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("employeeMessage","Mitarbeiterbereich!!");
+        modelAndView.addObject("kapa",user.getZeitkonto());
         modelAndView.setViewName("/mitarbeiter/home");
         return modelAndView;
     }
