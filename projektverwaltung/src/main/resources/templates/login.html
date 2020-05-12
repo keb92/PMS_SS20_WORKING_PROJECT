@@ -21,6 +21,7 @@
 
         <img id="profile-img" class="profile-img-card" src="https://i.ibb.co/5FZhN4k/thd-pms-kb.png" />
         <h5 class="card-title">Mitarbeiter-Login</h5>
+
         <form class="form-signin" th:action="@{/login}" method="POST">
             <span id="reauth-email" class="reauth-email"></span>
             <input type="text" id="user_name" name="user_name" class="form-control" placeholder="mitarbeiter-id" required autofocus>
@@ -29,7 +30,10 @@
         </form>
         <a href="#" class="forgot-password">
             <form th:action="@{/registration}" method="get">
+
+
                 <button class="btn btn-light" type="Submit">Noch nicht Regisitriert?</button>
+
             </form>
         </a>
         <div class="alert alert-block"  th:if="${param.error}">
