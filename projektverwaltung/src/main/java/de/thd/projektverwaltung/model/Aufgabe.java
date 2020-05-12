@@ -26,7 +26,7 @@ public class Aufgabe {
     @Column(name = "beschreibung")
     private String beschreibung;
     @Column(name = "aufwand")
-    private int aufwand;
+    private String aufwand;
 
 
     public Integer getAid() {
@@ -45,11 +45,11 @@ public class Aufgabe {
         this.beschreibung = beschreibung;
     }
 
-    public Integer getAufwand() {
+    public String getAufwand() {
         return aufwand;
     }
 
-    public void setAufwand(Integer aufwand) {
+    public void setAufwand(String aufwand) {
         this.aufwand = aufwand;
     }
 

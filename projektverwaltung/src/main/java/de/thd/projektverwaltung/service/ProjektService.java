@@ -23,11 +23,11 @@ public class ProjektService {
 
     public Projekt saveProjekt(Projekt projekt) {
 
+
         /*
         projekt.setBezeichnung(projekt.getBezeichnung());
         projekt.setBudget(projekt.getBudget());
         projekt.setScope(projekt.getScope());
-        projekt.setCustomers();
         */
         return projektrepository.save(projekt);
     }

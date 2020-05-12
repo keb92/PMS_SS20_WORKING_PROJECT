@@ -16,32 +16,33 @@
                   th:object="${projekt}" method="post" class="form-horizontal"
                   role="form">
                 <h2>Projekt Anlegen</h2>
+
                 <div class="form-group">
                     <div class="col-sm-9">
-
-                        <input type="text" th:field="*{bezeichnung}" placeholder="Bezeichnung"
+                        <input type="text" placeholder="Bezeichnung" th:field="*{bezeichnung}"
                                class="form-control"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-
-                        <input type="text" th:field="*{budget}"
-                               placeholder="Budget" class="form-control"/>
+                        <input type="text"
+                               placeholder="Budget" th:field="*{budget}" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="text" th:field="*{scope}" placeholder="Scope"
+                        <input type="text"  placeholder="Scope" th:field="*{scope}"
                                class="form-control"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="text" th:field="*{customer}" placeholder="Kunde"
-                               class="form-control"/>
+                        <label for="sel1">Kunde:</label>
+                        <select class="form-control" th:fields="${customers}" id="sel1">
+                            <option th:each="customer: ${customers}" th:value="${customer}" th:text="${customer.kundenname}"></option>
+                        </select>
                     </div>
                 </div>
 
@@ -50,11 +51,12 @@
                         <button type="submit" class="btn btn-primary btn-block">Anlegen</button>
                     </div>
                 </div>
+            </form>
 
                 <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
 
 
-            </form>
+
         </div>
     </div>
 </div>
