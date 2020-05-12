@@ -1,87 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Mitarbeiterregistrierung</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
+    <title>Mitarbeiter-Login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
-<form th:action="@{/}" method="get">
-    <button class="btn btn-md btn-success btn-block" type="Submit">Mitarbeiter-Login</button>
-</form>
 
+<body>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="https://i.ibb.co/5FZhN4k/thd-pms-kb.png" />
+        <h5 class="card-title">Mitarbeiter-Registrierung</h5>
             <form autocomplete="off" action="#" th:action="@{/registration}"
                   th:object="${user}" method="post" class="form-horizontal"
                   role="form">
-                <h2>Mitarbeiterregistrierung</h2>
                 <div class="form-group">
-                    <div class="col-sm-9">
+
                         <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
                                class="validation-message"></label>
                         <input type="text" th:field="*{name}" placeholder="Vorname"
                                class="form-control"/>
-                    </div>
                 </div>
-
                 <div class="form-group">
-                    <div class="col-sm-9">
                         <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{Nachname}"
                                class="validation-message"></label>
                         <input type="text" th:field="*{lastName}"
                                placeholder="Last Name" class="form-control"/>
-                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-9">
                         <input type="text" th:field="*{email}" placeholder="E-Mail"
                                class="form-control"/> <label
                             th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
                             class="validation-message"></label>
-                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-9">
                         <input type="text" th:field="*{userName}" placeholder="Miterbeiter-ID"
                                class="form-control"/> <label
                             th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
                             class="validation-message"></label>
-                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-9">
                         <input type="text" th:field="*{jobtitle}" placeholder="Stelle"
                                class="form-control"/> <label
                             th:if="${#fields.hasErrors('jobtitle')}" th:errors="*{jobtitle}"
                             class="validation-message"></label>
-                    </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-9">
                         <input type="password" th:field="*{password}"
                                placeholder="Passwort" class="form-control"/> <label
                             th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
                             class="validation-message"></label>
-                    </div>
                 </div>
-
                 <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Registrieren</button>
-                    </div>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Registrieren</button>
                 </div>
-
                 <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
-
+                <div class="alert alert-block"  th:if="${param.error}">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h4>Fehler</h4>
+                    Mitarbeiter-ID oder Passwort falsch.
+                </div>
+            </form>
+        <div class="form-group" stype="margin-left: -20px !important;">
+            <form th:action="@{/login}" method="get">
+                <button class="btn btn-light" type="Submit">Bereits registriert?</button>
             </form>
         </div>
     </div>
 </div>
-
 </body>
 </html>
