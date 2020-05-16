@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class CustomerController {
@@ -39,4 +40,14 @@ public class CustomerController {
 
     }
 
+    @GetMapping(value="admin/showCustomers")
+    public ModelAndView sumCustomer(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Customer> list = customerService.getAllCustomers();
+        modelAndView.addObject("customers", list);
+        modelAndView.setViewName("/admin/showCustomer");
+
+        return modelAndView;
+
+    }
 }

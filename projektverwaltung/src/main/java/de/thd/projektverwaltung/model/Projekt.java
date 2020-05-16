@@ -28,7 +28,7 @@ public class Projekt {
     private String projektleiter;
     @ManyToOne(targetEntity = Customer.class, cascade = CascadeType.ALL)
     @JoinColumn(name="cp_fk", referencedColumnName = "c_id")
-    private List<Customer> customer;
+    private List<Customer> customers;
 
 
 
@@ -63,11 +63,11 @@ public class Projekt {
     public void setScope (String scope) { this.scope = scope; }
 
     public List<Customer> getCustomers() {
-        return customer;
+        return customers;
     }
 
     public void setCustomers(List<Customer> customers) {
-        this.customer = customer;
+        this.customers = customers;
     }
 
 
