@@ -1,21 +1,18 @@
 package de.thd.projektverwaltung.controller;
 
 import de.thd.projektverwaltung.model.User;
-import de.thd.projektverwaltung.repository.UserRepository;
 import de.thd.projektverwaltung.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -26,10 +23,12 @@ public class LoginController {
 
 
 
+boolean wiagehtsweida = false;
 
     @GetMapping(value={"/", "/login"})
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
+        userService.kapaChange();
         modelAndView.setViewName("login");
         return modelAndView;
     }
