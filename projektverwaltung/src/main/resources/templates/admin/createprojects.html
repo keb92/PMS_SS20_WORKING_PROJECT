@@ -40,8 +40,8 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <label for="sel1">Kunde:</label>
-                        <select class="form-control" th:fields="${customers}" id="sel1">
-                            <option th:each="customer: ${customers}" th:value="${customer}" th:text="${customer.kundenname}"></option>
+                        <select class="form-control" th:field="*{customers.c_id}" id="sel1">
+                            <option th:each="c: ${Customers}" th:value="${c.c_id}" th:text="${c.kundenname}"></option>
                         </select>
                     </div>
                 </div>

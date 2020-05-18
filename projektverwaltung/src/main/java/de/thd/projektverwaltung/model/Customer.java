@@ -1,14 +1,12 @@
 package de.thd.projektverwaltung.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -21,16 +19,18 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "c_id")
-    private int c_id;
+    private Long c_id;
     @Column(name = "kundenname")
     private String kundenname;
 
+    @OneToMany(targetEntity = Projekt.class, mappedBy = "customers", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Projekt> projekt;
 
-    public int getC_id() {
+    public Long getC_id() {
         return c_id;
     }
 
-    public void setC_id(int c_id) {
+    public void setC_id(Long c_id) {
         this.c_id = c_id;
     }
 
@@ -40,5 +40,13 @@ public class Customer {
 
     public void setKundenname(String kundenname) {
         this.kundenname = kundenname;
+    }
+
+    public List<Projekt> getProjekt() {
+        return projekt;
+    }
+
+    public void setProjekt(List<Projekt> projekt) {
+        this.projekt = projekt;
     }
 }
