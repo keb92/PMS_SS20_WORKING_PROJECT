@@ -1,13 +1,9 @@
 package de.thd.projektverwaltung.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -24,20 +20,16 @@ public class Projekt {
     private String budget;
     @Column(name = "scope")
     private String scope;
-    @Column(name = "Projektleiter")
-    private String projektleiter;
-    @ManyToOne(targetEntity = Customer.class, cascade = CascadeType.ALL)
-    @JoinColumn(name="cp_fk", referencedColumnName = "c_id")
-    private List<Customer> customers;
+    @ManyToOne()
+    @JoinColumn(name="customer",  referencedColumnName = "c_id")
+    private Customer customers;
 
-
-
-    public Integer getpid() {
+    public int getPid() {
         return pid;
     }
 
-    public void setpid(Integer id) {
-        this.pid = id;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public String getBezeichnung() {
@@ -60,24 +52,15 @@ public class Projekt {
         return scope;
     }
 
-    public void setScope (String scope) { this.scope = scope; }
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
 
-    public List<Customer> getCustomers() {
+    public Customer getCustomers() {
         return customers;
     }
 
-    public void setCustomers(List<Customer> customers) {
+    public void setCustomers(Customer customers) {
         this.customers = customers;
     }
-
-
-    /*public String getProjektleiter() {
-        return projektleiter;
-    }
-
-    public void setProjektleiter (String projektleiter){
-        this.projektleiter = projektleiter;
-
-    }*/
-
 }
