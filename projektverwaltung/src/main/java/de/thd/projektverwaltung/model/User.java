@@ -9,9 +9,10 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
-@Data
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -54,6 +55,8 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @OneToMany(targetEntity = Projekt.class, mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Projekt> projekt;
 
     public Integer getId() {
         return id;
@@ -127,7 +130,22 @@ public class User {
 
     public int getMonth (){return month;}
 
+    public String getJobtitle() {
+        return jobtitle;
     }
+
+    public void setJobtitle(String jobtitle) {
+        this.jobtitle = jobtitle;
+    }
+
+    public List<Projekt> getProjekt() {
+        return projekt;
+    }
+
+    public void setProjekt(List<Projekt> projekt) {
+        this.projekt = projekt;
+    }
+}
 
 
 
