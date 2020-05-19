@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
+
 @NoArgsConstructor
 @Entity
 @Table(name = "projects")
@@ -20,6 +20,10 @@ public class Projekt {
     private String budget;
     @Column(name = "scope")
     private String scope;
+    @ManyToOne()
+    @JoinColumn(name = "projektleiter", referencedColumnName = "user_id")
+    private User user;
+
     @ManyToOne()
     @JoinColumn(name="customer",  referencedColumnName = "c_id")
     private Customer customers;
@@ -62,5 +66,13 @@ public class Projekt {
 
     public void setCustomers(Customer customers) {
         this.customers = customers;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

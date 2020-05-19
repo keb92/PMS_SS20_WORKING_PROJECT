@@ -19,6 +19,24 @@
 
                 <div class="form-group">
                     <div class="col-sm-9">
+                        <label for="sel1">Kunde:</label>
+                        <select class="form-control" th:field="*{customers.c_id}" id="sel1">
+                            <option th:each="c: ${Customers}" th:value="${c.c_id}" th:text="${c.kundenname}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <label for="sel1">Projektleiter:</label>
+                        <select class="form-control" th:field="*{user.id}" id="sel1">
+                            <option th:each="u: ${Users}" th:value="${u.id}" th:text="${u.userName}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
                         <input type="text" placeholder="Bezeichnung" th:field="*{bezeichnung}"
                                class="form-control"/>
                     </div>
@@ -34,15 +52,6 @@
                     <div class="col-sm-9">
                         <input type="text"  placeholder="Scope" th:field="*{scope}"
                                class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <label for="sel1">Kunde:</label>
-                        <select class="form-control" th:field="*{customers.c_id}" id="sel1">
-                            <option th:each="c: ${Customers}" th:value="${c.c_id}" th:text="${c.kundenname}"></option>
-                        </select>
                     </div>
                 </div>
 
