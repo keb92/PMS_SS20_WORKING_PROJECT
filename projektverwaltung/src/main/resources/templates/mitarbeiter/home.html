@@ -49,7 +49,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="aufgaben : ${aufgaben}">
+                        <tr th:each="aufgaben : ${aufgaben}"
+                            th:if="${aufgaben.user.id} == ${userid}">
                             <td th:text="${aufgaben.projekt.bezeichnung}"></td>
                             <td th:text="${aufgaben.beschreibung}"></td>
                             <td th:text="${aufgaben.aufwand}"></td>
