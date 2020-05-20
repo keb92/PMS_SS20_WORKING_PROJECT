@@ -1,43 +1,73 @@
 package de.thd.projektverwaltung.controller;
 
 
-import de.thd.projektverwaltung.model.Aufgabe;
+import de.thd.projektverwaltung.model.*;
 import de.thd.projektverwaltung.repository.AufgabenRepository;
-import de.thd.projektverwaltung.service.AufgabenService;
+import de.thd.projektverwaltung.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class TaskController {
 
     @Autowired
     private AufgabenService aufgabenService;
+    @Autowired
+    private ProjektService projektService;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private AufgabenRepository aufgabenRepository;
+
 
     @GetMapping(value = "/admin/createTask")
-    public ModelAndView create() {
-        ModelAndView modelAndView = new ModelAndView();
+    public ModelAndView createProject(ModelAndView modelAndView) {
         Aufgabe aufgabe = new Aufgabe();
-        modelAndView.addObject( "aufgabe", aufgabe);
-        modelAndView.setViewName("/admin/createTask");
+        List<Projekt> pro = projektService.getAllProjekt();
+        modelAndView.addObject("Projects",pro);
+        modelAndView.addObject("aufgabe", aufgabe);
+        modelAndView.setViewName("admin/createTask");
         return modelAndView;
-
     }
 
     @PostMapping(value = "/admin/createTask")
-    public ModelAndView saveTask(@Valid Aufgabe aufgabe, BindingResult bindingResult){
+    public ModelAndView saveTask(@ModelAttribute Aufgabe aufgabe) {
         ModelAndView modelAndView = new ModelAndView();
         aufgabenService.saveAufgabe(aufgabe);
-        modelAndView.addObject("successMessage","Aufgabe erfolgreich angelegt!");
+        modelAndView.addObject("successMessage", "Aufgabe erfolgreich anglegt.");
         modelAndView.addObject("aufgabe", new Aufgabe());
-        modelAndView.setViewName("/admin/createTask");
+        modelAndView.setViewName("admin/createTask");
         return modelAndView;
+    }
 
+    @GetMapping(value = "/admin/tasktouser")
+    public ModelAndView taskToUser(ModelAndView modelAndView) {
+        Aufgabe aufgabe = new Aufgabe();
+        List<User> user = userService.getAllUsers();
+        List<Aufgabe> aufg = aufgabenService.getAllAufgaben();
+        modelAndView.addObject("Tasks", aufg);
+        modelAndView.addObject("Users", user);
+        modelAndView.addObject("aufgabe", aufgabe);
+        modelAndView.setViewName("admin/tasktouser");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/admin/tasktouser")
+    public ModelAndView saveUser(@ModelAttribute Aufgabe aufgabe) {
+        aufgabenRepository.save(aufgabe);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("successMessage", "Aufgabe erfolgreich zugewiesen.");
+        modelAndView.addObject("aufgabe", new Aufgabe());
+        modelAndView.setViewName("admin/tasktouser");
+        return modelAndView;
     }
 
 }
