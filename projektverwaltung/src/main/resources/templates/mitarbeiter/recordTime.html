@@ -14,36 +14,7 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-        <a class="navbar-brand" href="#"><span th:utext="${userName}"></span></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a th:href="@{/mitarbeiter/home}" method="get" class="nav-link" href="#">Übersicht
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a th:href="@{/mitarbeiter/recordTime}" method="get" class="nav-link" href="#">Zeiten erfassen
-                        <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
-                </li>
-                <li class="nav-item">
-                    <form th:action="@{/logout}" method="get">
-                        <button class="btn btn-md btn-danger btn-block" name="registration"
-                                type="Submit">Logout
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<nav th:replace="mitarbeiter/navigation::navigation"></nav>
 
 <!-- Page Content -->
 <div class="container">
@@ -54,10 +25,10 @@
             <br>
             <div class="form-group">
                 <div class="col-sm-9">
-                <label for="sel1">Projekt:</label>
-                <select class="form-control" th:fields="${projects}" id="sel1">
-                    <option th:each="projekte: ${projects}" th:value="${projekte}" th:text="${projekte.bezeichnung}"></option>
-                </select>
+                    <label for="sel1">Projekt:</label>
+                    <select class="form-control" th:fields="${projects}" id="sel1">
+                        <option th:each="projekte: ${projects}" th:value="${projekte}" th:text="${projekte.beschreibung}"></option>
+                    </select>
                 </div>
             </div>
             <br>

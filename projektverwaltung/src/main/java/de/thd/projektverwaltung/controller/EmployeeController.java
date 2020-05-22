@@ -1,8 +1,9 @@
 package de.thd.projektverwaltung.controller;
 
 import de.thd.projektverwaltung.model.Projekt;
-
+import de.thd.projektverwaltung.model.Aufgabe;
 import de.thd.projektverwaltung.model.User;
+import de.thd.projektverwaltung.service.AufgabenService;
 import de.thd.projektverwaltung.service.ProjektService;
 import de.thd.projektverwaltung.repository.UserRepository;
 import de.thd.projektverwaltung.service.UserService;
@@ -21,11 +22,13 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private ProjektService projektService;
+    @Autowired
+    private AufgabenService aufgabenService;
 
     @GetMapping(value = {"/mitarbeiter/recordTime"})
     public ModelAndView saveit(@Valid Projekt projekt,  BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        List<Projekt> list = projektService.getAllProjekt();
+        List<Aufgabe> list = aufgabenService.getAllAufgaben();
         modelAndView.addObject("projects",list);
         modelAndView.addObject("successMessage", "Zeit erfolgreich erfasst");
         modelAndView.setViewName("/mitarbeiter/recordTime");

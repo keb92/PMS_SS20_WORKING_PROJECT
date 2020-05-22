@@ -17,7 +17,7 @@ public class Projekt {
     @Column(name = "bezeichnung")
     private String bezeichnung;
     @Column(name = "budget")
-    private String budget;
+    private int budget;
     @Column(name = "scope")
     private String scope;
     @ManyToOne()
@@ -44,11 +44,11 @@ public class Projekt {
         this.bezeichnung = bezeichnung;
     }
 
-    public String getBudget() {
+    public int getBudget() {
         return budget;
     }
 
-    public void setBudget(String budget) {
+    public void setBudget(int budget) {
         this.budget = budget;
     }
 

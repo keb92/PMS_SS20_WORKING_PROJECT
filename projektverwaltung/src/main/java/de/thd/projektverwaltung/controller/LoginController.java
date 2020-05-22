@@ -1,6 +1,8 @@
 package de.thd.projektverwaltung.controller;
 
+import de.thd.projektverwaltung.model.Aufgabe;
 import de.thd.projektverwaltung.model.User;
+import de.thd.projektverwaltung.service.AufgabenService;
 import de.thd.projektverwaltung.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,10 +22,11 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AufgabenService aufgabenService;
 
 
 
-boolean wiagehtsweida = false;
 
     @GetMapping(value={"/", "/login"})
     public ModelAndView login(){
@@ -86,8 +89,10 @@ boolean wiagehtsweida = false;
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
+        List<Aufgabe> list = aufgabenService.getAllAufgaben();
         modelAndView.addObject("userName", "Hallo " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("employeeMessage","Mitarbeiterbereich!!");
+        modelAndView.addObject("aufgaben",list);
         modelAndView.addObject("kapa",user.getZeitkonto());
         modelAndView.setViewName("/mitarbeiter/home");
         return modelAndView;
