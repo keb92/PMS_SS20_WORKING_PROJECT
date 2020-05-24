@@ -1,21 +1,14 @@
 package de.thd.projektverwaltung.service;
 import de.thd.projektverwaltung.model.Aufgabe;
-import de.thd.projektverwaltung.model.Projekt;
-import de.thd.projektverwaltung.model.Customer;
 import de.thd.projektverwaltung.model.User;
 import de.thd.projektverwaltung.repository.AufgabenRepository;
 import de.thd.projektverwaltung.repository.ProjektRepository;
 import de.thd.projektverwaltung.repository.UserRepository;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -55,7 +48,7 @@ public class AufgabenService {
         return uAufgabe;
     }*/
 
-    public Aufgabe findByaid(int a_id) {
+    /*public Aufgabe findByaid(int a_id) {
         return aufgabenRepository.findByaid(a_id);
     }
     public Aufgabe findByUser (User user) {return aufgabenRepository.findByUser(user);}
@@ -67,7 +60,7 @@ public class AufgabenService {
         } else {
             return new ArrayList<Aufgabe>();
         }
-    }
+    }*/
 
 
 
