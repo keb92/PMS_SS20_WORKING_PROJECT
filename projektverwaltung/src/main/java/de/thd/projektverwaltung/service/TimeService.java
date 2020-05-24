@@ -27,7 +27,19 @@ public class TimeService {
     }
 
 
+    public List<Aufgabe> returnAufgaben(){
+        List<Aufgabe> aufgaben = aufgabenRepository.findAll();
+        List<Time> times = timeRepository.findAll();
 
+        for (int i = 0; i<aufgaben.size();i++){
+            for (int j = 0; j<times.size(); j++){
+                if (aufgaben.get(i).getAid() == times.get(j).getAufgabe().getAid()){
+                    aufgaben.get(i).setAufwand(aufgaben.get(i).getAufwand()-times.get(j).getZeit());
+                }
+            }
+        }
+        return aufgaben;
+    }
 
     public int countTime(User user){
         int userid = user.getId();

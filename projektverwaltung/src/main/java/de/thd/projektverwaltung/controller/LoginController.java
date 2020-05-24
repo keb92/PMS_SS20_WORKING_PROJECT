@@ -1,6 +1,7 @@
 package de.thd.projektverwaltung.controller;
 
 import de.thd.projektverwaltung.model.Aufgabe;
+import de.thd.projektverwaltung.model.*;
 import de.thd.projektverwaltung.model.User;
 import de.thd.projektverwaltung.service.AufgabenService;
 import de.thd.projektverwaltung.service.TimeService;
@@ -95,9 +96,11 @@ public class LoginController {
         System.out.println(gebucht);
         List<Aufgabe> list = aufgabenService.getAllAufgaben();
         System.out.println(list);
+        List<Aufgabe> list2 = timeService.returnAufgaben();
         modelAndView.addObject("userName", "Hallo " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("employeeMessage","Mitarbeiterbereich!!");
         modelAndView.addObject("aufgaben",list);
+        modelAndView.addObject("timeaufgaben",list2);
         modelAndView.addObject("kapa",user.getZeitkonto() - gebucht);
         modelAndView.addObject("userid",user.getId());
         modelAndView.setViewName("/mitarbeiter/home");
