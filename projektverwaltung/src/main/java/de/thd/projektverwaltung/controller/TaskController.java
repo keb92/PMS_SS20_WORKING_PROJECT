@@ -5,6 +5,8 @@ import de.thd.projektverwaltung.model.*;
 import de.thd.projektverwaltung.repository.AufgabenRepository;
 import de.thd.projektverwaltung.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +44,9 @@ public class TaskController {
     @PostMapping(value = "/admin/createTask")
     public ModelAndView saveTask(@ModelAttribute Aufgabe aufgabe, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        aufgabe.setUser(user);
         if( aufgabenService.checkFitting(aufgabe) == false){
             bindingResult
                     .rejectValue("aufwand", "error.aufwand",
