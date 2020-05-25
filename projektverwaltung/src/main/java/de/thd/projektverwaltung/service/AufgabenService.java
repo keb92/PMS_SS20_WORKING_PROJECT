@@ -1,5 +1,6 @@
 package de.thd.projektverwaltung.service;
 import de.thd.projektverwaltung.model.Aufgabe;
+import de.thd.projektverwaltung.model.Projekt;
 import de.thd.projektverwaltung.model.User;
 import de.thd.projektverwaltung.repository.AufgabenRepository;
 import de.thd.projektverwaltung.repository.ProjektRepository;
@@ -16,7 +17,12 @@ public class AufgabenService {
 
     private AufgabenRepository aufgabenRepository;
     private UserRepository userRepository;
+
+    @Autowired
     private ProjektRepository projektRepository;
+
+    @Autowired
+    private ProjektService projektService;
 
     @Autowired
     public AufgabenService (AufgabenRepository aufgabenRepository){ this.aufgabenRepository = aufgabenRepository; }
@@ -40,6 +46,36 @@ public class AufgabenService {
         } else {
             return new ArrayList<Aufgabe>();
         }
+    }
+
+    public boolean checkFitting (Aufgabe aufgabe){
+        List<Aufgabe> aufgaben = aufgabenRepository.findAll();
+        List<Projekt> projekte = projektRepository.findAll();
+        int apid = aufgabe.getProjekt().getPid();
+        System.out.println("APID:" + apid);
+        System.out.println("Projekte: " + projekte);
+        System.out.println("Aufgaben: " + aufgaben);
+        int maximum = 0;
+        int zuvergleichen = aufgabe.getAufwand();
+        for (int i = 0; i<projekte.size();i++){
+            if(apid == projekte.get(i).getPid()){
+                maximum = maximum + projekte.get(i).getBudget();
+            }
+        }
+        System.out.println("Maximum:" + maximum);
+        for (int j = 0; j<aufgaben.size();j++){
+            if(apid == aufgaben.get(j).getProjekt().getPid()){
+                zuvergleichen = zuvergleichen + aufgaben.get(j).getAufwand();
+            }
+        }
+        System.out.println("zu vergleichen::" + zuvergleichen);
+        if (zuvergleichen <= maximum){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
     /*public Aufgabe updateAufgabe(Aufgabe fromIns){
         Aufgabe uAufgabe = aufgabenRepository.findByaid(fromIns.getAid());
