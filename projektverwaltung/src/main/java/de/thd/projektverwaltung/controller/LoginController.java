@@ -1,8 +1,10 @@
 package de.thd.projektverwaltung.controller;
 
 import de.thd.projektverwaltung.model.Aufgabe;
+import de.thd.projektverwaltung.model.*;
 import de.thd.projektverwaltung.model.User;
 import de.thd.projektverwaltung.service.AufgabenService;
+import de.thd.projektverwaltung.service.TimeService;
 import de.thd.projektverwaltung.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,7 +26,8 @@ public class LoginController {
     private UserService userService;
     @Autowired
     private AufgabenService aufgabenService;
-
+    @Autowired
+    private TimeService timeService;
 
 
 
@@ -89,11 +92,17 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
+        int gebucht = timeService.countTime(user);
+        System.out.println(gebucht);
         List<Aufgabe> list = aufgabenService.getAllAufgaben();
+        System.out.println(list);
+        List<Aufgabe> list2 = timeService.returnAufgaben();
         modelAndView.addObject("userName", "Hallo " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("employeeMessage","Mitarbeiterbereich!!");
         modelAndView.addObject("aufgaben",list);
-        modelAndView.addObject("kapa",user.getZeitkonto());
+        modelAndView.addObject("timeaufgaben",list2);
+        modelAndView.addObject("kapa",user.getZeitkonto() - gebucht);
+        modelAndView.addObject("userid",user.getId());
         modelAndView.setViewName("/mitarbeiter/home");
         return modelAndView;
     }

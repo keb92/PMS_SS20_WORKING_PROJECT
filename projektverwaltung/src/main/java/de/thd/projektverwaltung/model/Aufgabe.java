@@ -22,7 +22,7 @@ public class Aufgabe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "a_id", nullable = false, updatable = false)
+    @Column(name = "a_id")
     private int aid;
     @Column(name = "beschreibung", nullable = false, updatable = false)
     private String beschreibung;

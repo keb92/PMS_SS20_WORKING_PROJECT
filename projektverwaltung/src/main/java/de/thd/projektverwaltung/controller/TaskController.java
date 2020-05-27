@@ -5,7 +5,10 @@ import de.thd.projektverwaltung.model.*;
 import de.thd.projektverwaltung.repository.AufgabenRepository;
 import de.thd.projektverwaltung.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,12 +42,25 @@ public class TaskController {
     }
 
     @PostMapping(value = "/admin/createTask")
-    public ModelAndView saveTask(@ModelAttribute Aufgabe aufgabe) {
+    public ModelAndView saveTask(@ModelAttribute Aufgabe aufgabe, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        aufgabenService.saveAufgabe(aufgabe);
-        modelAndView.addObject("successMessage", "Aufgabe erfolgreich anglegt.");
-        modelAndView.addObject("aufgabe", new Aufgabe());
-        modelAndView.setViewName("admin/createTask");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
+        aufgabe.setUser(user);
+        if( aufgabenService.checkFitting(aufgabe) == false){
+            bindingResult
+                    .rejectValue("aufwand", "error.aufwand",
+                            "Das Projektbudget würde überschritten - bitte kleinere Aufgabe planen oder mit Kunden abklären!");
+            List<Projekt> pro = projektService.getAllProjekt();
+            modelAndView.addObject("Projects",pro);
+            modelAndView.setViewName("admin/createTask");
+        }
+        else {
+            aufgabenService.saveAufgabe(aufgabe);
+            modelAndView.addObject("successMessage", "Aufgabe erfolgreich anglegt.");
+            modelAndView.addObject("aufgabe", new Aufgabe());
+            modelAndView.setViewName("admin/createTask");
+        }
         return modelAndView;
     }
 

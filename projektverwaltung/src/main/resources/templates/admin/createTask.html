@@ -37,6 +37,9 @@
                     <div class="col-sm-9">
                         <input type="text"
                                placeholder="Budget" th:field="*{aufwand}" class="form-control"/>
+                        <label
+                                th:if="${#fields.hasErrors('aufwand')}" th:errors="*{aufwand}"
+                                class="validation-message"></label>
                     </div>
                 </div>
 
