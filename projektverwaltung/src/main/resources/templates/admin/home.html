@@ -10,39 +10,45 @@
 
 <!-- Page Content -->
 <div class="project-body" style="width: 100%;min-height: 1200px;height: 100%;background-repeat: no-repeat; ">
-    <div class="container" style="min-height: 1200px;-webkit-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);-moz-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);margin-top: -50px;">
+    <div class="container" style="min-height: 1200px;-webkit-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);-moz-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);">
+        <div class="row">
 
-
-    <div th:switch="${users}" class="container my-5">
-        <div class="col-md-10">
-            <h3>Mitarbeiterübersicht</h3>
-            <h2 th:case="null">Keine Mitarbeiter gefunden !!</h2>
-            <div th:case="*">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Vorname</th>
-                        <th>Nachname</th>
-                        <th>Email</th>
-                        <th>Position</th>
-                        <th>Zeitkonto</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="user : ${users}">
-                        <td th:text="${user.name}"></td>
-                        <td th:text="${user.lastName}"></td>
-                        <td th:text="${user.email}"></td>
-                        <td th:text="${user.jobtitle}"></td>
-                        <td th:text="${user.zeitkonto}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="col-lg-12 text-center">
+                <h1 class="mt-5">Adminsicht</h1>
+                <p class="lead">Verfügbare Projektstunden: </p>
+                <p th:text="${kapa}"></p>
             </div>
-
         </div>
-    </div>
+        <div th:switch="${users}" class="container my-5">
+            <div class="col-md-10">
+                <h3>Mitarbeiterübersicht</h3>
+                <h2 th:case="null">Aktuell keine Mitarbeiter vorhanden</h2>
+                <div th:case="*">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Vorname</th>
+                            <th>Nachname</th>
+                            <th>E-Mail</th>
+                            <th>Position</th>
+                            <th>Zeitkonto</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${users}"
+                            th:if="${user.id} != ${userid}">
+                            <td th:text="${user.name}"></td>
+                            <td th:text="${user.lastName}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.jobtitle}"></td>
+                            <td th:text="${user.zeitkonto}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
 <!-- Footer -->

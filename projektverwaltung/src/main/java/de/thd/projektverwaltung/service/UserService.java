@@ -1,6 +1,8 @@
 package de.thd.projektverwaltung.service;
 
+import de.thd.projektverwaltung.model.Aufgabe;
 import de.thd.projektverwaltung.model.Role;
+import de.thd.projektverwaltung.model.Time;
 import de.thd.projektverwaltung.model.User;
 import de.thd.projektverwaltung.repository.RoleRepository;
 import de.thd.projektverwaltung.repository.UserRepository;
@@ -51,6 +53,10 @@ public class UserService {
 
     @Autowired
     UserService userService;
+    @Autowired
+    TimeService timeService;
+    @Autowired
+    AufgabenService aufgabenService;
 
     public void kapaChange(){
         List<User> list = userService.getAllUsers();
@@ -59,7 +65,19 @@ public class UserService {
             Calendar cal = Calendar.getInstance();
             int month = cal.get(Calendar.MONTH)+1;
             if (user.getMonth() != month){
+                List<Time> timelist = timeService.getAllTime();
+                List<Aufgabe> aufgabenlist = aufgabenService.getAllAufgaben();
                 userService.saveKapa(user);
+                for (int j = 0; j<timelist.size();j++){
+                    for (int k = 0; k<aufgabenlist.size();k++){
+                        if(timelist.get(j).getAufgabe() == aufgabenlist.get(k)){
+                            aufgabenlist.get(k).setAufwand(aufgabenlist.get(k).getAufwand()-timelist.get(j).getZeit());
+                            timelist.get(j).setZeit(0);
+                            timeService.saveTime(timelist.get(j));
+                            aufgabenService.saveAufgabe(aufgabenlist.get(k));
+                        }
+                    }
+                }
             }
         }
     }

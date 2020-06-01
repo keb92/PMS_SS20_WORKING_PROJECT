@@ -78,6 +78,7 @@ public class TaskController {
 
     @PostMapping(value = "/admin/tasktouser")
     public ModelAndView saveUser(@ModelAttribute Aufgabe aufgabe) {
+        aufgabe.setAufwand(aufgabe.getAufwand());
         aufgabenRepository.save(aufgabe);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("successMessage", "Aufgabe erfolgreich zugewiesen.");
