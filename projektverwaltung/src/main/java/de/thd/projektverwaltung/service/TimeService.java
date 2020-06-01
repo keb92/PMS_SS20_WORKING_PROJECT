@@ -48,16 +48,19 @@ public class TimeService {
         int index = 0;
         for (int i = 0; i<aufgaben.size();i++){
             if (userid == aufgaben.get(i).getUser().getId()){
-                user_aufgaben.add(0,aufgaben.get(i).getAid());
+                user_aufgaben.add(index,aufgaben.get(i).getAid());
                 index++;
             }
         }
+        System.out.println(user_aufgaben);
         List<Time> time_user = timeRepository.findAll();
+        System.out.println(time_user);
         int counter = 0;
         for (int j = 0; j<time_user.size();j++){
             for (int k = 0; k<user_aufgaben.size();k++){
                 if (user_aufgaben.get(k) == time_user.get(j).getAufgabe().getAid()){
                     counter = counter + time_user.get(j).getZeit();
+                    System.out.println("COUNTER" + counter);
                 }
             }
         }

@@ -79,8 +79,13 @@ public class LoginController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
         List<User> list = userService.getAllUsers();
+        for(int i = 0;i<list.size();i++){
+            list.get(i).setZeitkonto(list.get(i).getZeitkonto()-timeService.countTime(list.get(i)));
+        }
         modelAndView.addObject("userName", "Hallo " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("users",list);
+        modelAndView.addObject("userid",user.getId());
+        modelAndView.addObject("kapa",user.getZeitkonto());
         modelAndView.addObject("adminMessage","Teamleiterbereich!!");
         modelAndView.setViewName("/admin/home");
         return modelAndView;
@@ -93,9 +98,7 @@ public class LoginController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUserName(auth.getName());
         int gebucht = timeService.countTime(user);
-        System.out.println(gebucht);
         List<Aufgabe> list = aufgabenService.getAllAufgaben();
-        System.out.println(list);
         List<Aufgabe> list2 = timeService.returnAufgaben();
         modelAndView.addObject("userName", "Hallo " + user.getUserName() + "/" + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("employeeMessage","Mitarbeiterbereich!!");
