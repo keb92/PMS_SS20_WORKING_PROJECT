@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:include="admin/header::head"></head>
+
+<body>
+
+<nav th:replace="admin/navigation::navigation"></nav>
+
+<div th:switch="${projekt}" class="container my-5">
+    <div class="col-md-10">
+        <h3>Projektübersicht</h3>
+        <h2 th:case="null">Keine Projekte gefunden !!</h2>
+        <div th:case="*">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Bezeichnung:</th>
+                    <th>Budget:</th>
+                    <th>Scope:</th>
+                    <th>Projektleiter:</th>
+                    <th>Kunde:</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="p : ${projekt}">
+                    <td th:text="${p.bezeichnung}"></td>
+                    <td th:text="${p.budget}"></td>
+                    <td th:text="${p.scope}"></td>
+                    <td th:text="${p.user.userName}"></td>
+                    <td th:text="${p.customers.kundenname}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+</div>
+<!-- Footer -->
+<nav th:replace="footer::footer"></nav>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.slim.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
