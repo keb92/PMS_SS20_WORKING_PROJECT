@@ -1,11 +1,10 @@
 package de.thd.projektverwaltung.controller;
 
+import de.thd.projektverwaltung.model.Aufgabe;
 import de.thd.projektverwaltung.model.Customer;
 import de.thd.projektverwaltung.model.Projekt;
 import de.thd.projektverwaltung.model.User;
-import de.thd.projektverwaltung.service.CustomerService;
-import de.thd.projektverwaltung.service.ProjektService;
-import de.thd.projektverwaltung.service.UserService;
+import de.thd.projektverwaltung.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +23,10 @@ public class AdminController{
     private CustomerService customerService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private AufgabenService aufgabenService;
+    @Autowired
+    private TimeService timeService;
 
     @GetMapping(value = {"/admin/createProject"})
     public ModelAndView createProject(ModelAndView modelAndView) {
@@ -42,6 +45,16 @@ public class AdminController{
         List<Projekt> projekte = projektservice.getAllProjekt();
         modelAndView.addObject("projekt", projekte);
         modelAndView.setViewName("admin/showProjekt");
+
+        return modelAndView;
+    }
+
+    @GetMapping(value = {"/admin/showTask"})
+    public ModelAndView showTask(ModelAndView modelAndView){
+        List<Aufgabe> aufgaben = aufgabenService.getAllAufgaben();
+        List<Aufgabe> list2 = timeService.returnAufgaben();
+        modelAndView.addObject("aufgabe", aufgaben);
+        modelAndView.setViewName("admin/showTask");
 
         return modelAndView;
     }

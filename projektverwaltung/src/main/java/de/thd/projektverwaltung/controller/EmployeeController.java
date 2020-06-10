@@ -9,6 +9,8 @@ import de.thd.projektverwaltung.service.ProjektService;
 import de.thd.projektverwaltung.repository.UserRepository;
 import de.thd.projektverwaltung.service.TimeService;
 import de.thd.projektverwaltung.service.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,13 +32,18 @@ public class EmployeeController {
     private AufgabenService aufgabenService;
     @Autowired
     private TimeService timeService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = {"/mitarbeiter/recordTime"})
     public ModelAndView saveit(ModelAndView modelAndView) {
         Time time = new Time();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByUserName(auth.getName());
         List<Aufgabe> list = aufgabenService.getAllAufgaben();
         modelAndView.addObject("projects",list);
         modelAndView.addObject("time",time);
+        modelAndView.addObject("userid",user.getId());
         modelAndView.setViewName("/mitarbeiter/recordTime");
         return modelAndView;
     }
