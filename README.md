@@ -38,3 +38,33 @@ Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat 
 
 
 # Testdaten
+
+- Login-Daten:
+
+
+| Mitarbeiter-ID    | Passwort  |  Rolle |
+| ---------------   | --------- | ------ |
+| hneustadt         | pwProjekt | ADMIN  | 
+| sbraun            | pwProjekt | ADMIN  |
+| bzweig            | pwProjekt | MEMBER | 
+| mjunker           | pwProjekt | MEMBER | 
+| ddecker           | pwProjekt | MEMBER | 
+
+- Kunden:
+
+| Name              | 
+| ---------------   | 
+| BMW               |  
+| Audi              | 
+| ZF                | 
+
+- Projekte:
+
+| Name                  | 
+| ---------------       | 
+| SAP-Rollout           |  
+| SAP-Customizing       | 
+| HR-Portal Einführung  | 
+
+
+
