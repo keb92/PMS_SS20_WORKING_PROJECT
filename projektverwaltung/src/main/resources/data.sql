@@ -16,7 +16,7 @@ REPLACE INTO `user_role` VALUES (1,1),
                                 (4,2),
                                 (5,2);
 
--- Projektdaten
+-- Kundendaten
 REPLACE INTO `customers` VALUES (1,"BMW"),
                                 (2,"AUDI"),
                                 (3, "ZF");
