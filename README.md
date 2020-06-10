@@ -37,16 +37,4 @@ Java annotation library which helps to reduce boilerplate code.
 Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
 
 
-# Lessons Learned
-
-## MSQL-Verbindung aufbauen
-
-- phpmyadmin -> Neue Datenbank anlegen -> Name: "projektverwaltung" / Zeichensatz: "latin1_general_cs"
-
-## Lombok
-
-- Durch Lombok-Annotationen können Klassen beim Kompillieren in Tabellen und somit auch Tabellenoperationen durchgeführt werden.
--> mehr Info unter:  [Stable - Project Lombok](https://projectlombok.org/features/all)
-
-
-
+# Testdaten
