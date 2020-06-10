@@ -36,12 +36,12 @@ Java annotation library which helps to reduce boilerplate code.
 
 Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
 
-# Datenbank
+## Datenbank
 - Name: projektverwaltung
 - Kollation: latin1_general_cs
 
 
-# Testdaten
+## Testdaten
 
 - Login-Daten:
 
