@@ -9,55 +9,60 @@
 
 <nav th:replace="admin/navigation::navigation"></nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/admin/createTask}"
-                  th:object="${aufgabe}" method="post" class="form-horizontal"
-                  role="form">
-                <h2>Aufgabe anlegen</h2>
+<div class="project-body" style="width: 100%;min-height: 1200px;height: 100%;background-repeat: no-repeat; ">
+    <div class="container" style="min-height: 1200px;-webkit-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);-moz-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);">
+        <div class="row">
 
-               <div class="form-group">
-                    <div class="col-sm-9">
-                        <label for="sel1">Projekt:</label>
-                        <select class="form-control" th:field="*{projekt.pid}" id="sel1">
-                            <option th:each="p: ${Projects}" th:value="${p.pid}" th:text="${p.bezeichnung}"></option>
-                        </select>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <form autocomplete="off" action="#" th:action="@{/admin/createTask}"
+                                  th:object="${aufgabe}" method="post" class="form-horizontal"
+                                  role="form">
+                                <h2>Aufgabe anlegen</h2>
+
+                               <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <label for="sel1">Projekt:</label>
+                                        <select class="form-control" th:field="*{projekt.pid}" id="sel1">
+                                            <option th:each="p: ${Projects}" th:value="${p.pid}" th:text="${p.bezeichnung}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <input type="text" placeholder="Bezeichnung" th:field="*{beschreibung}"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <input type="text"
+                                               placeholder="Budget" th:field="*{aufwand}" class="form-control"/>
+                                        <label
+                                                th:if="${#fields.hasErrors('aufwand')}" th:errors="*{aufwand}"
+                                                class="validation-message"></label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn btn-primary btn-block">Anlegen</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" placeholder="Bezeichnung" th:field="*{beschreibung}"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text"
-                               placeholder="Budget" th:field="*{aufwand}" class="form-control"/>
-                        <label
-                                th:if="${#fields.hasErrors('aufwand')}" th:errors="*{aufwand}"
-                                class="validation-message"></label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Anlegen</button>
-                    </div>
-                </div>
-            </form>
-
-            <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
-
-
-
         </div>
     </div>
 </div>
-
+<!-- Footer -->
+<nav th:replace="footer::footer"></nav>
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.slim.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

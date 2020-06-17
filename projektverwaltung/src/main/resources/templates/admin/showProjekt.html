@@ -9,36 +9,43 @@
 
 <nav th:replace="admin/navigation::navigation"></nav>
 
-<div th:switch="${projekt}" class="container my-5">
-    <div class="col-md-10">
-        <h3>Projektübersicht</h3>
-        <h2 th:case="null">Keine Projekte gefunden !!</h2>
-        <div th:case="*">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Bezeichnung:</th>
-                    <th>Budget:</th>
-                    <th>Scope:</th>
-                    <th>Projektleiter:</th>
-                    <th>Kunde:</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="p : ${projekt}">
-                    <td th:text="${p.bezeichnung}"></td>
-                    <td th:text="${p.budget}"></td>
-                    <td th:text="${p.scope}"></td>
-                    <td th:text="${p.user.userName}"></td>
-                    <td th:text="${p.customers.kundenname}"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
 
+<div class="project-body" style="width: 100%;min-height: 1200px;height: 100%;background-repeat: no-repeat; ">
+    <div class="container" style="min-height: 1200px;-webkit-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);-moz-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);">
+        <div class="row">
+
+            <div th:switch="${projekt}" class="container my-5">
+                <div class="col-md-10">
+                    <h3>Projektübersicht</h3>
+                    <h2 th:case="null">Keine Projekte gefunden !!</h2>
+                    <div th:case="*">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Bezeichnung:</th>
+                                <th>Budget:</th>
+                                <th>Scope:</th>
+                                <th>Projektleiter:</th>
+                                <th>Kunde:</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="p : ${projekt}">
+                                <td th:text="${p.bezeichnung}"></td>
+                                <td th:text="${p.budget}"></td>
+                                <td th:text="${p.scope}"></td>
+                                <td th:text="${p.user.userName}"></td>
+                                <td th:text="${p.customers.kundenname}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-</div>
+
 <!-- Footer -->
 <nav th:replace="footer::footer"></nav>
 <!-- Bootstrap core JavaScript -->

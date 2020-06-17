@@ -9,29 +9,37 @@
 
 <nav th:replace="admin/navigation::navigation"></nav>
 
-<div th:switch="${customers}" class="container my-5">
-    <div class="col-md-10">
-        <h3>Kundenübersicht</h3>
-        <h2 th:case="null">Keine Kunden gefunden !!</h2>
-        <div th:case="*">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Kundenname:</th>
+<div class="project-body" style="width: 100%;min-height: 1200px;height: 100%;background-repeat: no-repeat; ">
+    <div class="container" style="min-height: 1200px;-webkit-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);-moz-box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);box-shadow: 0px 3px 5px 0px rgba(110,110,110,1);">
+        <div class="row">
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="customer : ${customers}">
-                    <td th:text="${customer.kundenname}"></td>
-                </tr>
-                </tbody>
-            </table>
+            <div th:switch="${customers}" class="container my-5">
+                <div class="col-md-10">
+                    <h3>Kundenübersicht</h3>
+                    <h2 th:case="null">Keine Kunden gefunden !!</h2>
+                    <div th:case="*">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Kundenname:</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="customer : ${customers}">
+                                <td th:text="${customer.kundenname}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-
     </div>
 </div>
-</div>
+
 <!-- Footer -->
 <nav th:replace="footer::footer"></nav>
 <!-- Bootstrap core JavaScript -->
