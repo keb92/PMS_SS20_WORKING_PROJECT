@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * The Data Access Class of {@link Aufgabe} objects. All Interactions with the database regarding the entity
+ * {@link Aufgabe} should be handled by methods provided by this class.
+ */
 @Service
 public class AufgabenService {
 
@@ -27,20 +30,24 @@ public class AufgabenService {
     @Autowired
     public AufgabenService (AufgabenRepository aufgabenRepository){ this.aufgabenRepository = aufgabenRepository; }
 
+    /**
+     * Creates a new {@link Aufgabe} and saves it into the Database.
+     * @param aufgabe
+     * @return
+     */
     public Aufgabe saveAufgabe(Aufgabe aufgabe){
-
-
         aufgabe.setBeschreibung(aufgabe.getBeschreibung());
         aufgabe.setAufwand(aufgabe.getAufwand());
 
-
         return aufgabenRepository.save(aufgabe);
-
     }
 
+    /**
+     * Returns all {@link Aufgabe} from the Database
+     * @return all Aufgabe
+     */
     public List<Aufgabe> getAllAufgaben() {
         List<Aufgabe> result = (List<Aufgabe>) aufgabenRepository.findAll();
-
         if(result.size() > 0) {
             return result;
         } else {
@@ -48,6 +55,11 @@ public class AufgabenService {
         }
     }
 
+    /**
+     * Check if Aufwand of a {@link Aufgabe} > or < a Budget of {@link Projekt}
+     * @param aufgabe
+     * @return true or false
+     */
     public boolean checkFitting (Aufgabe aufgabe){
         List<Aufgabe> aufgaben = aufgabenRepository.findAll();
         List<Projekt> projekte = projektRepository.findAll();
@@ -77,28 +89,4 @@ public class AufgabenService {
         }
 
     }
-    /*public Aufgabe updateAufgabe(Aufgabe fromIns){
-        Aufgabe uAufgabe = aufgabenRepository.findByaid(fromIns.getAid());
-        uAufgabe.setAufwand(fromIns.getAufwand());
-        aufgabenRepository.save(uAufgabe);
-        return uAufgabe;
-    }*/
-
-    /*public Aufgabe findByaid(int a_id) {
-        return aufgabenRepository.findByaid(a_id);
-    }
-    public Aufgabe findByUser (User user) {return aufgabenRepository.findByUser(user);}
-
-    public List<Aufgabe> getUserAufgabe(User user){
-        List<Aufgabe> result = (List<Aufgabe>) aufgabenRepository.findByUser(user);
-        if(result.size() > 0) {
-            return result;
-        } else {
-            return new ArrayList<Aufgabe>();
-        }
-    }*/
-
-
-
-
 }

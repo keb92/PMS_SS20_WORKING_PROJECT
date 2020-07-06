@@ -11,6 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ErrorHandlingController implements ErrorController {
 
+    /**
+     *<p> Provide Error-Handling for Application </p>
+     *
+     *<p> expect request '/error'</p>
+     * @param request
+     * @return
+     */
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request) {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
@@ -28,7 +35,10 @@ public class ErrorHandlingController implements ErrorController {
         return "error";
     }
 
-
+    /**
+     * <p> Overrides getErrorPath() to return "error" </p>
+     * @return
+     */
     @Override
     public String getErrorPath() {
         return "error";

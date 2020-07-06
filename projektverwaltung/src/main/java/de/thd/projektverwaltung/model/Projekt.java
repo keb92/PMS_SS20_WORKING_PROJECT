@@ -1,10 +1,7 @@
 package de.thd.projektverwaltung.model;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-
 
 @NoArgsConstructor
 @Entity
@@ -23,7 +20,6 @@ public class Projekt {
     @ManyToOne()
     @JoinColumn(name = "projektleiter", referencedColumnName = "user_id")
     private User user;
-
     @ManyToOne()
     @JoinColumn(name="customer",  referencedColumnName = "c_id")
     private Customer customers;

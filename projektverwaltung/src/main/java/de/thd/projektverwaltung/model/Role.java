@@ -1,10 +1,7 @@
 package de.thd.projektverwaltung.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Data
@@ -18,7 +15,6 @@ public class Role {
     private int id;
     @Column(name = "role")
     private String role;
-
 
     public int getId() {
         return id;
