@@ -1,16 +1,16 @@
 package de.thd.projektverwaltung.service;
+
 import de.thd.projektverwaltung.model.Projekt;
-import de.thd.projektverwaltung.model.Customer;
-import de.thd.projektverwaltung.model.User;
 import de.thd.projektverwaltung.repository.ProjektRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
+/**
+ * The Data Access Class of {@link Projekt} objects. All Interactions with the database regarding the entity
+ * {@link Projekt} should be handled by methods provided by this class.
+ */
 @Service
 public class ProjektService {
 
@@ -21,20 +21,30 @@ public class ProjektService {
         this.projektrepository = projektRepository;
     }
 
+    /**
+     * Saves new {@link Projekt} into the Database.
+     * @param projekt
+     * @return
+     */
     public Projekt saveProjekt(Projekt projekt) {
 
-
-        /*
-        projekt.setBezeichnung(projekt.getBezeichnung());
-        projekt.setBudget(projekt.getBudget());
-        projekt.setScope(projekt.getScope());
-        */
         return projektrepository.save(projekt);
     }
+
+    /**
+     * Returns a single Projekt by its primary database key.
+     * @param pid the primary key of a {@link Projekt}
+     * @return a single Projekt
+     */
     public Projekt findByPid(int pid) {
+
         return projektrepository.findByPid(pid);
     }
 
+    /**
+     * Returns all {@link Projekt} from the database.
+     * @return all Projekt
+     */
     public List<Projekt> getAllProjekt()
     {
         List<Projekt> result = (List<Projekt>) projektrepository.findAll();

@@ -30,7 +30,12 @@ public class LoginController {
     private TimeService timeService;
 
 
-
+    /**
+     * <p> Provide Form for Login</p>
+     *
+     * <p> expect HTTP GET and request '/' or '/login'</p>
+     * @return
+     */
     @GetMapping(value={"/", "/login"})
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
@@ -39,7 +44,12 @@ public class LoginController {
         return modelAndView;
     }
 
-
+    /**
+     * <p> Provide Form for Registration of a new {@link User} </p>
+     *
+     * <p> expect HTTP GET and request '/registration'</p>
+     * @return
+     */
     @GetMapping(value="/registration")
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();
@@ -49,6 +59,14 @@ public class LoginController {
         return modelAndView;
     }
 
+    /**
+     * <p> Creates and saves a {@link User}</p>
+     *
+     * <p> expect HTTP POST and request '/registration'</p>
+     * @param user
+     * @param bindingResult
+     * @return
+     */
     @PostMapping(value = "/registration")
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
@@ -70,9 +88,13 @@ public class LoginController {
         return modelAndView;
     }
 
-
-
-
+    /**
+     * <p> Show Admin View of Application </p>
+     * <p> Set {@link Time} for {@link User} </p>
+     *
+     * <p> expect HTTP GET and request '/admin/home' </p>
+     * @return
+     */
     @GetMapping(value="/admin/home")
     public ModelAndView admin(){
         ModelAndView modelAndView = new ModelAndView();
@@ -91,7 +113,13 @@ public class LoginController {
         return modelAndView;
     }
 
-
+    /**
+     * <p> Show Employee View of Application </p>
+     * <p>  Search for all {@link Aufgabe} for the specific {@link User} </p>
+     *
+     * <p> expect HTTP GET and request '/mitarbeiter/home' </p>
+     * @return
+     */
     @GetMapping(value="/mitarbeiter/home")
     public ModelAndView mitarbeiter(){
         ModelAndView modelAndView = new ModelAndView();

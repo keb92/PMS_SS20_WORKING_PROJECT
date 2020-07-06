@@ -1,6 +1,5 @@
 package de.thd.projektverwaltung.controller;
 
-
 import de.thd.projektverwaltung.model.Customer;
 import de.thd.projektverwaltung.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,12 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    /**
+     * <p> Provide Form for {@link Customer} </p>
+     *
+     * <p> expect HTTP GET and request '/admin/createCustomer' </p>
+     * @return
+     */
     @GetMapping(value="admin/createCustomer")
     public ModelAndView show(){
         ModelAndView modelAndView = new ModelAndView();
@@ -29,6 +34,14 @@ public class CustomerController {
 
     }
 
+    /**
+     * <p> Save a {@link Customer} </p>
+     *
+     * <p> expect HTTP POST and request 'admin/createCustomer' </p>
+     * @param customer
+     * @param bindingResult
+     * @return
+     */
     @PostMapping(value="admin/createCustomer")
     public ModelAndView createCustomer(@Valid Customer customer, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();
@@ -40,6 +53,12 @@ public class CustomerController {
 
     }
 
+    /**
+     * <p> Search for all {@link Customer} and add as Object to modelAndView </p>
+     *
+     * <p> expect HTTP GET and request 'admin/showCustomers' </p>
+     * @return
+     */
     @GetMapping(value="admin/showCustomers")
     public ModelAndView sumCustomer(){
         ModelAndView modelAndView = new ModelAndView();

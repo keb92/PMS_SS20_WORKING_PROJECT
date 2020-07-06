@@ -1,13 +1,10 @@
 package de.thd.projektverwaltung.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.util.Set;
 
 @Data
 @Builder
@@ -24,7 +21,6 @@ public class Time {
     @OneToOne()
     @JoinColumn(name = "aufgabe", referencedColumnName = "a_id")
     private Aufgabe aufgabe;
-
 
     public Aufgabe getAufgabe() {
         return aufgabe;

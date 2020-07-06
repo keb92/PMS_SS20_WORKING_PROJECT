@@ -2,18 +2,16 @@ package de.thd.projektverwaltung.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
-
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "customers")
+
 public class Customer {
 
     @Id
@@ -22,7 +20,6 @@ public class Customer {
     private Long c_id;
     @Column(name = "kundenname")
     private String kundenname;
-
     @OneToMany(targetEntity = Projekt.class, mappedBy = "customers", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Projekt> projekt;
 

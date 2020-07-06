@@ -5,10 +5,13 @@ import de.thd.projektverwaltung.repository.AufgabenRepository;
 import de.thd.projektverwaltung.repository.TimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Data Access Class of {@link Time} objects. All Interactions with the database regarding the entity
+ * {@link Time} should be handled by methods provided by this class.
+ */
 @Service
 public class TimeService {
 
@@ -26,7 +29,10 @@ public class TimeService {
         this.timeRepository = timeRepository;
     }
 
-
+    /**
+     * Return all {@link Aufgabe} from the database.
+     * @return all Aufgabe
+     */
     public List<Aufgabe> returnAufgaben(){
         List<Aufgabe> aufgaben = aufgabenRepository.findAll();
         List<Time> times = timeRepository.findAll();
@@ -41,6 +47,11 @@ public class TimeService {
         return aufgaben;
     }
 
+    /**
+     * Calculate and returns a {@link Time} for a {@link User}.
+     * @param user
+     * @return counter which represents time
+     */
     public int countTime(User user){
         int userid = user.getId();
         List<Aufgabe> aufgaben = aufgabenRepository.findAll();
@@ -68,6 +79,11 @@ public class TimeService {
 
     }
 
+    /**
+     * Saves a {@link Time} into the database.
+     * @param time
+     * @return
+     */
     public Time saveTime(Time time) {
         List<Time> times = timeRepository.findAll();
         int counter = time.getZeit();
@@ -86,6 +102,11 @@ public class TimeService {
         return timeRepository.save(time);
     }
 
+    /**
+     * Compare Times and returns boolean if input time is ok.
+     * @param time
+     * @return true or false
+     */
     public boolean countMax(Time time){
         List<Time> times = timeRepository.findAll();
         List<Aufgabe> aufgaben = aufgabenRepository.findAll();
@@ -111,7 +132,10 @@ public class TimeService {
         }
     }
 
-
+    /**
+     * Returns all {@link Time} from the database.
+     * @return all Time
+     */
     public List<Time> getAllTime() {
         List<Time> result = (List<Time>) timeRepository.findAll();
 
@@ -121,7 +145,16 @@ public class TimeService {
             return new ArrayList<Time>();
         }
     }
-    public Time findByAufgabe(Aufgabe aufgabe){return timeRepository.findByAufgabe(aufgabe);}
+
+    /**
+     * Return {@link Time} for a {@link Aufgabe} in the database.
+     * @param aufgabe
+     * @return Time
+     */
+    public Time findByAufgabe(Aufgabe aufgabe){
+
+        return timeRepository.findByAufgabe(aufgabe);
+    }
 
 
 

@@ -2,16 +2,13 @@ package de.thd.projektverwaltung.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Set;
-
 
 @Builder
 @AllArgsConstructor
@@ -122,13 +119,21 @@ public class User {
         this.roles = roles;
     }
 
-    public void setZeitkonto(int zeitkonto){this.zeitkonto=zeitkonto;}
+    public void setZeitkonto(int zeitkonto){
+        this.zeitkonto=zeitkonto;
+    }
 
-    public int getZeitkonto(){return zeitkonto;}
+    public int getZeitkonto(){
+        return zeitkonto;
+    }
 
-    public void setMonth(int month){this.month = month;}
+    public void setMonth(int month){
+        this.month = month;
+    }
 
-    public int getMonth (){return month;}
+    public int getMonth (){
+        return month;
+    }
 
     public String getJobtitle() {
         return jobtitle;
